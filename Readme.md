@@ -15,8 +15,12 @@ Applique l'opérateur XOR sur des chaines, des entiers
 Encodeurs :
 Calcule une chaîne en base64, applique le chiffre de César (ROT 13), encode en URL
 
+Coordonnées
+Convertit depuis et vers Geo décimales, géo degrés minutes secondes, Lambert, UTM et MGRS
+
 Convertisseur de devise
 
-Convertisseur d'unités (unités impériales vers métriques et inversement)
+Convertisseur d'unités
+Distance, température, poids, angle
 
 ColorPicker

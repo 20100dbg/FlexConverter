@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using System.Text;
 using System.Security.Cryptography;
 using System.Windows.Forms;
@@ -11,6 +10,7 @@ namespace FlexConverter
     {
         String alpha = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String alpha2 = "abcdefghijklmnopqrstuvwxyz";
+
 
         public FlexConverter()
         {
@@ -35,8 +35,14 @@ namespace FlexConverter
                 "lb -> oz", "oz -> lb"
             });
 
-        }
 
+            cb_unitesAngle.Items.AddRange(new String[] {
+                "deg -> mil", "mil -> deg",
+                "deg -> grad", "grad -> deg",
+                "mil -> grad", "grad -> mil"
+            });
+
+        }
 
         #region nombres
 
@@ -66,6 +72,7 @@ namespace FlexConverter
         private String FromIntToBaseX(int x, int toBase)
         {
             String tmpstr = "";
+            if (x == 0) tmpstr = "00";
 
             while (x > 0)
             {
@@ -368,48 +375,51 @@ namespace FlexConverter
 
         private String Xor(String text, String key, String type)
         {
+            if (type == "string") //String
+            {
+                text = formatHex(text);
+                key = formatHex(key);
+                type = "hex";
+            }
+
             String[] tabText = text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            String[] tabKey = key.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            //String[] tabKey = new String[] { key };
+
             int idxKey = 0;
             String result = "";
 
             if (tabText.Length == 0) return "";
-            if (key.Length == 0) return "";
+            if (tabKey.Length == 0) return "";
 
 
-            if (type == "string") //String
+            for (int i = 0; i < tabText.Length; i++)
             {
-                result = XorString(tb_xor_clair.Text, tb_xorKey.Text);
-            }
-            else
-            {
-                for (int i = 0; i < tabText.Length; i++)
+
+                if (type == "int") //Integer
                 {
+                    int x, y;
+                    if (!int.TryParse(tabText[i], out x)) x = 0;
+                    if (!int.TryParse(tabKey[idxKey], out y)) x = 0;
 
-                    if (type == "int") //Integer
-                    {
-                        int x, y;
-                        if (!int.TryParse(tabText[i], out x)) x = 0;
-                        if (!int.TryParse(key, out y)) x = 0;
-
-                        result += XorInt(x, y);
-                    }
-                    else if (type == "hex") //Hex
-                    {
-                        int x = FromAnyToBase10(tabText[i], 16);
-                        int y = FromAnyToBase10(key, 16);
-
-                        result += FromIntToBaseX((x ^ y), 16);
-                    }
-                    else if (type == "bin") //Bin
-                    {
-                        int x = FromAnyToBase10(tabText[i], 2);
-                        int y = FromAnyToBase10(key, 2);
-
-                        result += FromIntToBaseX((x ^ y), 2);
-                    }
-
-                    if (++idxKey == key.Length) idxKey = 0;
+                    result += XorInt(x, y) + " ";
                 }
+                else if (type == "hex") //Hex
+                {
+                    int x = FromAnyToBase10(tabText[i], 16);
+                    int y = FromAnyToBase10(tabKey[idxKey], 16);
+
+                    result += FromIntToBaseX(XorInt(x, y), 16) + " ";
+                }
+                else if (type == "bin") //Bin
+                {
+                    int x = FromAnyToBase10(tabText[i], 2);
+                    int y = FromAnyToBase10(tabKey[idxKey], 2);
+
+                    result += FromIntToBaseX(XorInt(x, y), 2) + " ";
+                }
+
+                if (++idxKey == tabKey.Length) idxKey = 0;
             }
 
             return result;
@@ -430,11 +440,11 @@ namespace FlexConverter
 
                 if (idx > -1)
                 {
-                    int idx2 = alpha2.IndexOf(key[idxKey++]);
+                    int idx2 = alpha2.IndexOf(key[idxKey]);
                     if (encrypt) newstr += alpha2[(idx + idxKey) % alpha2.Length];
                     else newstr += alpha2[(alpha2.Length + (idx - idxKey)) % alpha2.Length];
 
-                    if (idxKey == key.Length) idxKey = 0;
+                    if (++idxKey == key.Length) idxKey = 0;
                 }
                 else
                     newstr += text[i];
@@ -643,6 +653,28 @@ namespace FlexConverter
         }
 
 
+
+        private void cb_unitesAngle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Double from;
+            Double to;
+
+            tb_uniAngleFrom.Text = tb_uniAngleFrom.Text.Replace('.', ',');
+
+            if (Double.TryParse(tb_uniAngleFrom.Text, out from))
+            {
+                if (cb_unitesAngle.SelectedIndex == 0) to = from / 360 * 6400;
+                else if (cb_unitesAngle.SelectedIndex == 1) to = from / 6400 * 360;
+                else if (cb_unitesAngle.SelectedIndex == 2) to = from / 360 * 400;
+                else if (cb_unitesAngle.SelectedIndex == 3) to = from / 400 * 360;
+                else if (cb_unitesAngle.SelectedIndex == 4) to = from / 6400 * 400;
+                else if (cb_unitesAngle.SelectedIndex == 5) to = from / 400 * 6400;
+                else to = 0;
+
+                tb_uniAngleTo.Text = Math.Round(to, 2).ToString();
+            }
+        }
+
         #endregion
 
         private void button1_Click(object sender, EventArgs e)
@@ -653,7 +685,7 @@ namespace FlexConverter
             String txt = "RGB (A) : " + c.R + " " + c.G + " " + c.B + " (" + c.A + ") " + Environment.NewLine;
             txt += "couleur système : " + c.ToKnownColor() + Environment.NewLine;
             txt += "Int : " + c.ToArgb() + Environment.NewLine;
-            txt += "#" + FromIntToBaseX(c.R, 16) + FromIntToBaseX(c.G, 16) + FromIntToBaseX(c.B, 16) + Environment.NewLine;
+            txt += "#" + FromIntToBaseX(c.R, 16) + FromIntToBaseX(c.G, 16).ToString() + FromIntToBaseX(c.B, 16).ToString() + Environment.NewLine;
 
             textBox1.Text = txt;
         }
@@ -672,5 +704,80 @@ namespace FlexConverter
             tb_substitution2.Text = Substitution(tb_xor_clair.Text, tb_xorKey.Text, false);
         }
 
+
+
+        #region coordonnées
+
+        private void ConvertFromDec(Double y, Double x)
+        {
+            tb_dmsY.Text = Coordonnees.DecToDMS(y, true);
+            tb_dmsX.Text = Coordonnees.DecToDMS(x, false);
+
+            Coordonnees.Coord c = Coordonnees.Wgs84toLambert93(y, x);
+            tb_lambertY.Text = c.Y.ToString();
+            tb_lambertX.Text = c.X.ToString();
+
+            c = Coordonnees.Wgs84toUTM(y, x);
+            tb_utmY.Text = (c.Y / 1000).ToString();
+            tb_utmX.Text = (c.X / 1000).ToString();
+            tb_utmZone.Text = c.Zone.ToString();
+            tb_utmFuseau.Text = c.Fuseau.ToString();
+
+            tb_MGRS.Text = Coordonnees.UTM_MGRS(c.X, c.Y, c.Fuseau, c.Zone);
+
+        }
+
+        private void b_fromDecimales_Click(object sender, EventArgs e)
+        {
+            Double y = Coordonnees.ConvertToDouble(tb_DecY.Text);
+            Double x = Coordonnees.ConvertToDouble(tb_DecX.Text);
+
+            ConvertFromDec(y, x);
+        }
+
+        private void b_fromDMS_Click(object sender, EventArgs e)
+        {
+            Double y = Coordonnees.CleanCoord(tb_dmsY.Text);
+            Double x = Coordonnees.CleanCoord(tb_dmsX.Text);
+
+            tb_DecY.Text = y.ToString();
+            tb_DecX.Text = x.ToString();
+
+            ConvertFromDec(y, x);
+        }
+
+        private void b_fromLambert_Click(object sender, EventArgs e)
+        {
+            tb_lambertY.Text = Coordonnees.FixDecSeparator(tb_lambertY.Text);
+            tb_lambertY.Text = Coordonnees.FixDecSeparator(tb_lambertY.Text);
+
+            Double y = double.Parse(tb_lambertY.Text);
+            Double x = double.Parse(tb_lambertX.Text);
+
+            Coordonnees.Lambert93toWgs84(y, x);
+        }
+
+        private void b_fromUTM_Click(object sender, EventArgs e)
+        {
+            String zone = tb_utmZone.Text;
+            int fuseau = int.Parse(tb_utmFuseau.Text);
+            Double y = Coordonnees.ConvertToDouble(tb_utmY.Text);
+            Double x = Coordonnees.ConvertToDouble(tb_utmX.Text);
+
+            Coordonnees.Coord c = Coordonnees.UTMtoWgs84(y, x, fuseau);
+
+            ConvertFromDec(c.Y, c.X);
+        }
+
+        private void b_fromMGRS_Click(object sender, EventArgs e)
+        {
+            String mgrs = tb_MGRS.Text;
+            Coordonnees.Coord c = Coordonnees.MGRS_UTM(mgrs);
+            c = Coordonnees.UTMtoWgs84(c.Y, c.X, c.Fuseau);
+
+            ConvertFromDec(c.Y, c.X);
+        }
+
+        #endregion
     }
 }

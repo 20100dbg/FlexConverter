@@ -1,12 +1,3 @@
-C:\Users\vincent\Documents\Visual Studio 2012\Projects\FlexConverter\FlexConverter\bin\Debug\FlexConverter.exe.config
-C:\Users\vincent\Documents\Visual Studio 2012\Projects\FlexConverter\FlexConverter\bin\Debug\FlexConverter.exe
-C:\Users\vincent\Documents\Visual Studio 2012\Projects\FlexConverter\FlexConverter\bin\Debug\FlexConverter.pdb
-C:\Users\vincent\Documents\Visual Studio 2012\Projects\FlexConverter\FlexConverter\obj\Debug\FlexConverter.csprojResolveAssemblyReference.cache
-C:\Users\vincent\Documents\Visual Studio 2012\Projects\FlexConverter\FlexConverter\obj\Debug\FlexConverter.FlexConverter.resources
-C:\Users\vincent\Documents\Visual Studio 2012\Projects\FlexConverter\FlexConverter\obj\Debug\FlexConverter.Properties.Resources.resources
-C:\Users\vincent\Documents\Visual Studio 2012\Projects\FlexConverter\FlexConverter\obj\Debug\FlexConverter.csproj.GenerateResource.Cache
-C:\Users\vincent\Documents\Visual Studio 2012\Projects\FlexConverter\FlexConverter\obj\Debug\FlexConverter.exe
-C:\Users\vincent\Documents\Visual Studio 2012\Projects\FlexConverter\FlexConverter\obj\Debug\FlexConverter.pdb
 C:\Users\vincent\source\repos\FlexConverter\FlexConverter\bin\Debug\FlexConverter.exe.config
 C:\Users\vincent\source\repos\FlexConverter\FlexConverter\bin\Debug\FlexConverter.exe
 C:\Users\vincent\source\repos\FlexConverter\FlexConverter\bin\Debug\FlexConverter.pdb
@@ -17,3 +8,30 @@ C:\Users\vincent\source\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverte
 C:\Users\vincent\source\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.csproj.CoreCompileInputs.cache
 C:\Users\vincent\source\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.exe
 C:\Users\vincent\source\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.pdb
+D:\Users\Marty\source\repos\FlexConverter\FlexConverter\bin\Debug\FlexConverter.exe.config
+D:\Users\Marty\source\repos\FlexConverter\FlexConverter\bin\Debug\FlexConverter.exe
+D:\Users\Marty\source\repos\FlexConverter\FlexConverter\bin\Debug\FlexConverter.pdb
+D:\Users\Marty\source\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.csprojAssemblyReference.cache
+D:\Users\Marty\source\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.FlexConverter.resources
+D:\Users\Marty\source\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.Properties.Resources.resources
+D:\Users\Marty\source\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.csproj.GenerateResource.cache
+D:\Users\Marty\source\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.exe
+D:\Users\Marty\source\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.pdb
+Z:\source\repos\FlexConverter\FlexConverter\bin\Debug\FlexConverter.exe.config
+Z:\source\repos\FlexConverter\FlexConverter\bin\Debug\FlexConverter.exe
+Z:\source\repos\FlexConverter\FlexConverter\bin\Debug\FlexConverter.pdb
+Z:\source\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.csprojAssemblyReference.cache
+Z:\source\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.FlexConverter.resources
+Z:\source\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.Properties.Resources.resources
+Z:\source\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.csproj.GenerateResource.cache
+Z:\source\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.exe
+Z:\source\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.pdb
+C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\bin\Debug\FlexConverter.exe.config
+C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\bin\Debug\FlexConverter.exe
+C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\bin\Debug\FlexConverter.pdb
+C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.csprojAssemblyReference.cache
+C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.FlexConverter.resources
+C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.Properties.Resources.resources
+C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.csproj.GenerateResource.cache
+C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.exe
+C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\obj\Debug\FlexConverter.pdb
