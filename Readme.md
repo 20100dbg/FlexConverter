@@ -1,26 +1,54 @@
+# FlexConverter
 FlexConverter est un convertisseur complet
 
-Nombres :
-Convertit des nombres de et vers les bases décimale, héxadécimale, octale et binaire.
+### Nombres
+Conversion depuis et vers les bases :
+- décimale
+- héxadécimale
+- octale
+- binaire
 
-Chaînes :
-Transforme des chaînes en code ascii, en hexa, en binaire et inversement
+### Chaînes
+Transforme des chaînes
+- code ascii
+- hexadécimale
+- binaire
 
-Hash :
-Calcule le hash d'une chaîne vers MD5, SHA1, SHA256 et MD5 unix
+### Hash
+Calcule le hash d'une chaîne :
+- MD5
+- SHA1
+- SHA256
+- MD5 unix
 
-Xor :
+### Xor
 Applique l'opérateur XOR sur des chaines, des entiers
 
-Encodeurs :
-Calcule une chaîne en base64, applique le chiffre de César (ROT 13), encode en URL
+### Encodeurs
+Calcule une chaîne :
+- base64
+- chiffre de César (ROT 13)
+- encode en URL
 
-Coordonnées
-Convertit depuis et vers Geo décimales, géo degrés minutes secondes, Lambert, UTM et MGRS
+### Coordonnées
+Convertit depuis et vers :
+- Geo décimales
+- géo degrés minutes secondes
+- Lambert
+- UTM
+- MGRS
 
-Convertisseur de devise
+### Convertisseur de devise
+Taux à appliquer manuellement
 
-Convertisseur d'unités
-Distance, température, poids, angle
+### Convertisseur d'unités
+- Distance
+- Température
+- Poids
+- Angle
 
-ColorPicker
+### ColorPicker
+Outil de sélection de couleur
+- R, G, B entier
+- R, G, B hexa
+- Nom de couleur système
