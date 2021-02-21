@@ -1,9 +1,0 @@
-C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\bin\Release\FlexConverter.exe.config
-C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\bin\Release\FlexConverter.exe
-C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\bin\Release\FlexConverter.pdb
-C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\obj\Release\FlexConverter.csprojAssemblyReference.cache
-C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\obj\Release\FlexConverter.FlexConverter.resources
-C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\obj\Release\FlexConverter.Properties.Resources.resources
-C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\obj\Release\FlexConverter.csproj.GenerateResource.cache
-C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\obj\Release\FlexConverter.exe
-C:\Users\Marty\Documents\repos\FlexConverter\FlexConverter\obj\Release\FlexConverter.pdb
