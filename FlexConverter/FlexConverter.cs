@@ -16,6 +16,7 @@ namespace FlexConverter
         {
             InitializeComponent();
             cb_xorType.SelectedIndex = 0;
+            cb_xorOutput.SelectedIndex = 0;
             cb_ascii.SelectedIndex = 0;
             cb_hex.SelectedIndex = 0;
 
@@ -72,7 +73,6 @@ namespace FlexConverter
         private String FromIntToBaseX(int x, int toBase)
         {
             String tmpstr = "";
-            if (x == 0) tmpstr = "00";
 
             while (x > 0)
             {
@@ -80,6 +80,8 @@ namespace FlexConverter
                 tmpstr = alpha[idx] + tmpstr;
                 x /= toBase;
             }
+
+            if (toBase == 16) tmpstr = tmpstr.PadLeft(2, '0');
 
             return tmpstr;
         }
@@ -355,7 +357,7 @@ namespace FlexConverter
             return x ^ y;
         }
 
-        private String XorString(String str, String key)
+        private String XorString(String str, String key, String output)
         {
             String result = "";
             int idxKey = 0;
@@ -364,7 +366,12 @@ namespace FlexConverter
             {
                 int x = (int)str[i];
                 int y = (int)key[idxKey];
-                result += (char)(x ^ y);
+                int r = XorInt(x, y);
+
+                if (output == "String") result += (char)r;
+                else if (output == "Int") result += r + " ";
+                else if (output == "Hex") result += FromIntToBaseX(r, 16) + " ";
+                else if (output == "Bin") result += FromIntToBaseX(r, 2) + " ";
 
                 if (++idxKey == key.Length) idxKey = 0;
             }
@@ -373,51 +380,40 @@ namespace FlexConverter
         }
 
 
-        private String Xor(String text, String key, String type)
+        private String Xor(String text, String key, String type, String output)
         {
-            if (type == "string") //String
-            {
-                text = formatHex(text);
-                key = formatHex(key);
-                type = "hex";
-            }
-
             String[] tabText = text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             String[] tabKey = key.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            //String[] tabKey = new String[] { key };
+            if (tabText.Length == 0) return "";
+            if (tabKey.Length == 0) return "";
 
             int idxKey = 0;
             String result = "";
 
-            if (tabText.Length == 0) return "";
-            if (tabKey.Length == 0) return "";
-
-
             for (int i = 0; i < tabText.Length; i++)
             {
-
-                if (type == "int") //Integer
+                int x = 0, y = 0, r;
+                if (type == "Int") //Integer
                 {
-                    int x, y;
                     if (!int.TryParse(tabText[i], out x)) x = 0;
                     if (!int.TryParse(tabKey[idxKey], out y)) x = 0;
-
-                    result += XorInt(x, y) + " ";
                 }
-                else if (type == "hex") //Hex
+                else if (type == "Hex") //Hex
                 {
-                    int x = FromAnyToBase10(tabText[i], 16);
-                    int y = FromAnyToBase10(tabKey[idxKey], 16);
-
-                    result += FromIntToBaseX(XorInt(x, y), 16) + " ";
+                    x = FromAnyToBase10(tabText[i], 16);
+                    y = FromAnyToBase10(tabKey[idxKey], 16);
                 }
-                else if (type == "bin") //Bin
+                else if (type == "Bin") //Bin
                 {
-                    int x = FromAnyToBase10(tabText[i], 2);
-                    int y = FromAnyToBase10(tabKey[idxKey], 2);
-
-                    result += FromIntToBaseX(XorInt(x, y), 2) + " ";
+                    x = FromAnyToBase10(tabText[i], 2);
+                    y = FromAnyToBase10(tabKey[idxKey], 2);
                 }
+
+                r = XorInt(x, y);
+                if (output == "String") result += (char)r;
+                else if (output == "Int") result += r + " ";
+                else if (output == "Hex") result += FromIntToBaseX(r, 16) + " ";
+                else if (output == "Bin") result += FromIntToBaseX(r, 2) + " ";
 
                 if (++idxKey == tabKey.Length) idxKey = 0;
             }
@@ -452,6 +448,19 @@ namespace FlexConverter
 
             return newstr;
         }
+
+        private void b_xor_Click(object sender, EventArgs e)
+        {
+            String type = cb_xorType.SelectedItem.ToString();
+            String output = cb_xorOutput.SelectedItem.ToString();
+
+            if (type == "String") tb_xorResult.Text = XorString(tb_xor_clair.Text, tb_xorKey.Text, output);
+            else tb_xorResult.Text = Xor(tb_xor_clair.Text, tb_xorKey.Text, type, output);
+            
+            tb_substitution.Text = Substitution(tb_xor_clair.Text, tb_xorKey.Text, true);
+            tb_substitution2.Text = Substitution(tb_xor_clair.Text, tb_xorKey.Text, false);
+        }
+
 
         #endregion
 
@@ -690,19 +699,6 @@ namespace FlexConverter
             textBox1.Text = txt;
         }
 
-        private void b_xor_Click(object sender, EventArgs e)
-        {
-            int idx = cb_xorType.SelectedIndex;
-            String type = "";
-            if (idx == 0) type = "string";
-            else if (idx == 1) type = "int";
-            else if (idx == 2) type = "hex";
-            else if (idx == 3) type = "bin";
-
-            tb_xorResult.Text = Xor(tb_xor_clair.Text, tb_xorKey.Text, type);
-            tb_substitution.Text = Substitution(tb_xor_clair.Text, tb_xorKey.Text, true);
-            tb_substitution2.Text = Substitution(tb_xor_clair.Text, tb_xorKey.Text, false);
-        }
 
 
 

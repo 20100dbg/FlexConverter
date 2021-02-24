@@ -1,6 +1,10 @@
 # FlexConverter
 FlexConverter est un convertisseur complet
 
+
+<img src="https://pbs.twimg.com/media/Eu8Jf7GXEAMZPzc?format=png&name=small">
+
+
 ### Nombres
 Conversion depuis et vers les bases :
 - décimale

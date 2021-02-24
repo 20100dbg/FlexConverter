@@ -164,6 +164,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.cb_xorOutput = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -638,6 +639,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.cb_xorOutput);
             this.tabPage4.Controls.Add(this.b_xor);
             this.tabPage4.Controls.Add(this.tb_substitution2);
             this.tabPage4.Controls.Add(this.label18);
@@ -732,9 +734,9 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(26, 171);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(30, 13);
+            this.label10.Size = new System.Drawing.Size(39, 13);
             this.label10.TabIndex = 32;
-            this.label10.Text = "XOR";
+            this.label10.Text = "Output";
             // 
             // tb_xorKey
             // 
@@ -1519,6 +1521,20 @@
             this.colorDialog1.FullOpen = true;
             this.colorDialog1.ShowHelp = true;
             // 
+            // cb_xorOutput
+            // 
+            this.cb_xorOutput.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_xorOutput.FormattingEnabled = true;
+            this.cb_xorOutput.Items.AddRange(new object[] {
+            "String",
+            "Int",
+            "Hex",
+            "Bin"});
+            this.cb_xorOutput.Location = new System.Drawing.Point(530, 171);
+            this.cb_xorOutput.Name = "cb_xorOutput";
+            this.cb_xorOutput.Size = new System.Drawing.Size(58, 21);
+            this.cb_xorOutput.TabIndex = 40;
+            // 
             // FlexConverter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1700,6 +1716,7 @@
         private System.Windows.Forms.Button b_fromLambert;
         private System.Windows.Forms.Button b_fromDMS;
         private System.Windows.Forms.Button b_fromDecimales;
+        private System.Windows.Forms.ComboBox cb_xorOutput;
     }
 }
 
